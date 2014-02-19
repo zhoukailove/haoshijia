@@ -1,53 +1,9 @@
-<h1>Listing users</h1>
+<% provide(:title, '全部用户') %>
+<h1>All users</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Username</th>
-      <th>Truename</th>
-      <th>Email</th>
-      <th>Mobile</th>
-      <th>Role</th>
-      <th>State</th>
-      <th>Password reset token</th>
-      <th>Password reset sent at</th>
-      <th>Avatar</th>
-      <th>Descript</th>
-      <th>Qq</th>
-      <th>Auth token</th>
-      <th>Stores count</th>
-      <th>Points</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
+<ul class="users">
 
-  <tbody>
-    <% @users.each do |user| %>
-      <tr>
-        <td><%= user.username %></td>
-        <td><%= user.truename %></td>
-        <td><%= user.email %></td>
-        <td><%= user.mobile %></td>
-        <td><%= user.role %></td>
-        <td><%= user.state %></td>
-        <td><%= user.password_reset_token %></td>
-        <td><%= user.password_reset_sent_at %></td>
-        <td><%= user.avatar %></td>
-        <td><%= user.descript %></td>
-        <td><%= user.qq %></td>
-        <td><%= user.auth_token %></td>
-        <td><%= user.stores_count %></td>
-        <td><%= user.points %></td>
-        <td><%= link_to 'Show', user %></td>
-        <td><%= link_to 'Edit', edit_user_path(user) %></td>
-        <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+      <%= render @users %>
 
-<br>
-
-<%= link_to 'New User', new_user_path %>
+</ul>
+<%= will_paginate %>

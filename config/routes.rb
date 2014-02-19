@@ -1,6 +1,11 @@
-Haoshijia::Application.routes.draw do
+@nil_class = Haoshijia::Application.routes.draw do
 
+  resources :users
+  resources :sessions, only: [:new, :create, :destroy]
   root to: "welcome#home"
+  get '/signup', to: 'users#new'
+  match '/signin',  to: 'sessions#new',         via: 'get'
+  match '/signout', to: 'sessions#destroy',     via: 'delete'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -41,7 +46,7 @@ Haoshijia::Application.routes.draw do
   #       get 'recent', on: :collection
   #     end
   #   end
-  
+
   # Example resource route with concerns:
   #   concern :toggleable do
   #     post 'toggle'
@@ -56,3 +61,4 @@ Haoshijia::Application.routes.draw do
   #     resources :products
   #   end
 end
+@nil_class

@@ -1,70 +1,27 @@
-<%= javascript_tag do %>
+<%= form_for(@user) do |f| %>
+    <%= render 'shared/error_messages' %>
 
-    $(function(){
-    $('input, textarea').placeholder();
-    $('.error').remove();
-    })
-
-    function facebox_submit(){
-    var request =  $.ajax({
-    type: "POST",
-    complete: function(data, text){
-    var result = jQuery.parseJSON(data.responseText)
-    if(result['success']){
-    window.location.href = decodeURIComponent(result['data'])
-    }else{
-    $('.ajax_error').text(result['data']).show();
-    $('#btnSend').html("登录");
-    }
-    },
-    url: $('.facebox_form').attr('action'),
-    data: $('.facebox_form').serialize(),
-    dataType: "json",
-    beforeSend: function(){
-    $('#btnSend').html("正在发送请求....");
-    }
-    })
-    }
-<% end -%>
-
-<div class="face_content">
-  <% if params[:contact_owner].present? %>
-      <div class="yinsi"> 为保证房东隐私，请登录后查看房东联系方式</div>
-  <% end %>
-
-  <%= form_tag '/sessions/traveller_login', :id => 'login_user',:class => 'facebox_form' do %>
-      <%= hidden_field_tag :return_url, u(@return_url) %>
-      <div class="ajax_error" style="display:none;"></div>
-      <table class="traveller_login">
-        <tr>
-          <td class="text1">账号：</td>
-          <td>
-            <%= text_field_tag :mobile, params[:mobile], :class => "textBox", :placeholder => "手机号或者邮箱", :id => "phone_number" %>
-          </td>
-          <td class="mobile_error">
-            <a href="/users/traveller_new?return_url=<%= u(@return_url) %>" onclick="facebox_window(this, '注册新用户');return false;">注册新用户</a>
-          </td>
-        </tr>
-        <tr>
-          <td class="text1">密码：</td>
-          <td><%= password_field_tag :password, nil, :class => "textBox" %></td>
-          <td class="password_error"><%= link_to '忘记密码?', forget_password_users_path %></td>
-        </tr>
-        <tr>
-          <td></td>
-          <td >
-            <label for="remember_me" style="display:block;margin-bottom:5px;">
-              <%= check_box_tag 'remember_me', 'yes', true, :class => 'remember_me'%> 记住我
-            </label>
-          </td>
-          <td></td>
-        </tr>
-        <tr>
-          <td></td>
-          <td colspan="2">
-            <button id="btnSend" class="btn-super" onclick="facebox_submit();return false;" title="登录">登录</button>
-          </td>
-        </tr>
-      </table>
-  <% end %>
-</div>
+  <div class="field">
+    <%= f.label :username %><br>
+    <%= f.text_field :username %>
+  </div>
+  <div class="field">
+    <%= f.label :mobile %><br>
+    <%= f.text_field :mobile %>
+  </div>
+  <div class="field">
+    <%= f.label :email %><br>
+    <%= f.text_field :email %>
+  </div>
+    <div class="field">
+    <%= f.label :password %>  <br>
+    <%= f.password_field :password %>
+    </div>
+    <div class="field">
+    <%= f.label :password_confirmation, "Confirmation" %>  <br>
+    <%= f.password_field :password_confirmation %>
+    </div>
+    <div class="actions">
+    <%= f.submit "Create my account", class: "btn btn-large btn-primary"%>
+  </div>
+<% end %>
