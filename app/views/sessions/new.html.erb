@@ -1,17 +1,19 @@
-<h1 xmlns="http://www.w3.org/1999/html">登录</h1>
-<div class="row">
-  <div class="span6 offset3">
-    <%= form_for(:session, url: sessions_path) do |f| %>
+
+    <%= form_for(:session, url: sessions_path,html: { class: "form-signin"}) do |f| %>
+
+        <h2 class="form-signin-heading">登录</h2>
 
         <%= f.label :email %> </br>
-        <%= f.text_field :email %> </br>
+        <%= f.text_field :email ,class: "input-block-level" %>
 
         <%= f.label :password %> </br>
-        <%= f.password_field :password %> </br>
+        <%= f.password_field :password ,class: "input-block-level" %>
+
+
+        <%= check_box_tag "remember","记住我" ,true,class: 'checkbox'%></br>
 
         <%= f.submit "登录", class: "btn btn-large btn-primary" %>
+        <p>有租这儿帐号了？请 <%= link_to "登录!", signup_path %></p>
+
     <% end %>
 
-    <p>New user? <%= link_to "Sign up now!", signup_path %></p>
-  </div>
-</div>

@@ -1,0 +1,11 @@
+<% provide(:title, '全部房间') %>
+<h1>All rooms</h1>
+
+<ul class="rooms">
+          <% @rooms.each do |room| %>
+  <li>
+     <%= link_to truncate(room.title, :length => 18), :controller => 'rooms', :action => 'show', :id => room %>
+      <% end %>
+
+</ul>
+<%= will_paginate %>

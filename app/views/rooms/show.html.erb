@@ -1,0 +1,8 @@
+<p>
+  <strong>title:</strong>
+  <%= @room.title %>
+  <%= link_to image_tag(@room.first_screen(:thumb), :style => "width:210px;height:115px;"), :controller => 'rooms', :action => 'show', :id => @room %>
+</p>
+
+
+

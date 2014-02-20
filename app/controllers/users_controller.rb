@@ -7,7 +7,7 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   def index
-    @users = User.where.not(admin: true).paginate(page: params[:page])
+    @users = User.where.not(admin: true,state: false).paginate(page: params[:page])
   end
 
   # GET /users/1
