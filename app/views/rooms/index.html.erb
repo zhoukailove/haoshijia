@@ -4,7 +4,9 @@
 <ul class="rooms">
           <% @rooms.each do |room| %>
   <li>
-     <%= link_to truncate(room.title, :length => 18), :controller => 'rooms', :action => 'show', :id => room %>
+    <%= link_to image_tag(room.first_screen[0][0], alt: "Rails"), room_path(room) %>
+    <%#=image_tag  room.first_screen[0][0]  %>
+     <%= link_to truncate(room.title, :length => 18), room_path(room) %>
       <% end %>
 
 </ul>

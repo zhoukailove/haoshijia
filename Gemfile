@@ -19,6 +19,9 @@ gem 'bcrypt-ruby', '3.0.1'
 gem 'quiet_assets'
 gem 'will_paginate', '3.0.4'
 gem 'bootstrap-will_paginate', '0.0.9'
+gem 'sunspot_rails'
+gem 'sunspot_solr' # optional pre-packaged Solr distribution for use in development
+
 group :doc do
   gem 'sdoc', '0.3.20', require: false
 end
