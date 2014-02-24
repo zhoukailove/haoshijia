@@ -1,13 +1,58 @@
 <% provide(:title, '全部房间') %>
-<h1>All rooms</h1>
 
-<ul class="rooms">
-          <% @rooms.each do |room| %>
-  <li>
-    <%= link_to image_tag(room.first_screen[0][0], alt: "Rails"), room_path(room) %>
-    <%#=image_tag  room.first_screen[0][0]  %>
-     <%= link_to truncate(room.title, :length => 18), room_path(room) %>
-      <% end %>
+<%= form_tag rooms_path, :method => :get do %>
+    <p>
 
-</ul>
+      <%#= hidden_field_tag :state, 1 %>
+      <%= text_field_tag :query, params[:query] %>
+      <%= submit_tag "Search", :name => nil %>
+    </p>
+<% end %>
+
+
+      <table>
+        <thead>
+        <tr>
+          <td>图</td>
+          <td>标题</td>
+          <td>创建日</td>
+          <td>交通状况</td>
+          <td>周边基础设施</td>
+          <td>附近景点</td>
+          <!--<td></td>-->
+          <!--<td></td>-->
+          <!--<td></td>-->
+
+        </tr>
+        </thead>
+        <% @rooms.each do |room| %>
+        <tr>
+          <td><%= link_to image_tag(room.first_screen[0][0], alt: "Rails"), room_path(room) %></td>
+          <td><%= link_to truncate(room.title, :length => 18), room_path(room) %></td>
+          <td><%= room.created_at %></td>
+          <td><%= room.traffic %></td>
+          <td><%= room.life_assort %></td>
+          <td><%= room.scenery %></td>
+          <!--<td></td>-->
+        </tr>
+        <% end %>
+      </table>
+
+
+
+<div id="facets">
+  <h3>Published</h3>
+  <ul>
+    <% for row in @search.facet(:publish_month).rows %>
+        <li>
+          <% if params[:month].blank? %>
+              <%= link_to row.value, :month => row.value %> (<%= row.count %>)
+          <% else %>
+              <strong><%= row.value %></strong> (<%= link_to "remove", :month => nil %>)
+          <% end %>
+        </li>
+    <% end %>
+  </ul>
+</div>
+
 <%= will_paginate %>

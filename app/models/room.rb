@@ -1,11 +1,29 @@
 class Room < ActiveRecord::Base
+  validates_presence_of :title
   has_many :screenshots,  :dependent => :destroy
 
 
 
   searchable do
-    text :name, boost: 5
+    text :title,:traffic,:life_assort,:scenery
+    #,:other_desc,:detail
+    time :updated_at
+    string :publish_month
+    boolean :available
+    integer :state
+    integer :screenshots_count
+
   end
+
+  def publish_month
+    updated_at.strftime("%B %Y")
+  end
+
+
+
+#def available?
+#  state == :available
+#end
 
   #查找本地图片路径，以便显示图片信息
   require 'find'

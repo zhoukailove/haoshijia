@@ -45,6 +45,7 @@ GEM
     execjs (2.0.2)
     faker (1.1.2)
       i18n (~> 0.5)
+    highline (1.6.20)
     hike (1.2.3)
     i18n (0.6.9)
     jbuilder (1.0.2)
@@ -64,8 +65,12 @@ GEM
     mysql2 (0.3.14)
     nokogiri (1.6.1)
       mini_portile (~> 0.5.0)
+    options (2.3.2)
     polyglot (0.3.3)
     pr_geohash (1.0.0)
+    progress_bar (1.0.0)
+      highline (~> 1.6.1)
+      options (~> 2.3.0)
     quiet_assets (1.0.2)
       railties (>= 3.1, < 5.0)
     rack (1.5.2)
@@ -161,6 +166,7 @@ DEPENDENCIES
   jbuilder (= 1.0.2)
   jquery-rails (= 3.0.4)
   mysql2
+  progress_bar
   quiet_assets
   rails (= 4.0.0)
   rails_12factor (= 0.0.2)
